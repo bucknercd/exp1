@@ -1,0 +1,41 @@
+#!/usr/bin/python
+
+from  sys import argv
+
+def exp(base , y):
+    if y == 0:
+        return 1
+    elif y == 1:
+        return base
+    else:
+        ans = base
+        for i in range(y-1):
+            ans = ans * base
+        return ans
+
+def exp_list(base, y):
+    for i in range(y+1):
+        print '{0}^{1} = {2}'.format(base, i, exp(base, i))
+
+''' MAIN ''' 
+usage = '\nUsage:\n$ exp <base> <exponent> [OPTION]\nOPTIONS = \'s\' - show\n'
+if len(argv) < 3:
+    print usage
+    exit()
+elif len(argv) == 3:
+    script, base, y = argv
+    try:
+        print '{0}^{1} = {2}'.format(base, y, exp(int(base), int(y)))
+    except:
+        print usage
+if len(argv) == 4:
+    script, base, y, option = argv
+    if option == 's':
+        try:
+            exp_list(int(base) ,int(y))
+        except:
+            print usage
+    else:
+        print usage
+
+
